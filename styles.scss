@@ -1,0 +1,22 @@
+$color: blue;
+
+body{
+    background: url('https://m.telegraphindia.com/unsafe/620x350/smart/static.telegraphindia.com/derivative/THE_TELEGRAPH/1686750/16X9/image92f52691-eb06-4ba8-9477-c57ad6a40832.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.example{
+    color: $color;
+}
+
+.card{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-hour, .card-week{
+    margin-top: 50px;
+}
