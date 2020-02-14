@@ -43,8 +43,6 @@ class Index extends React.Component{
                         const result = res.data;
                         console.log(result)
                         
-                        //in kelvin
-                        // this.getTemp(result.main.temp)
                         this.setState({
                             location: result.name,
                             country: result.sys.country,
@@ -117,7 +115,6 @@ class Index extends React.Component{
 
     render(){
         var hours = ['0000', '0300', '0600', '0900', '1200', '1500', '1800', '2100'];
-        console.log(this.state)
         return(
             <div>
                 <div className="columns is-desktop">
@@ -211,13 +208,6 @@ class Index extends React.Component{
                             </p>
                             <div className="table-container">
                                 <table className="table">
-                                    {/* <thead>
-                                        <tr>
-                                            {hours.map(hour => 
-                                                <th>{hour}</th>
-                                            )}
-                                        </tr>
-                                    </thead> */}
                                     <tbody>
                                         <tr>
                                          {this.state.monthAvg.map(data => 

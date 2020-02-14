@@ -5377,8 +5377,7 @@ function (_React$Component) {
 
                 axios__WEBPACK_IMPORTED_MODULE_11___default.a.get("https://api.openweathermap.org/data/2.5/weather?lat=".concat(lat, "&lon=").concat(_long, "&appid=bb8842d60516f2656d00cdbc9f999293")).then(function (res) {
                   var result = res.data;
-                  console.log(result); //in kelvin
-                  // this.getTemp(result.main.temp)
+                  console.log(result);
 
                   _this2.setState({
                     location: result.name,
@@ -5471,191 +5470,190 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var hours = ['0000', '0300', '0600', '0900', '1200', '1500', '1800', '2100'];
-      console.log(this.state);
       return __jsx("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 122
+          lineNumber: 119
         },
         __self: this
       }, __jsx("div", {
         className: "columns is-desktop",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 123
+          lineNumber: 120
         },
         __self: this
       }, __jsx("div", {
         className: "column is-three-fifths is-offset-one-fifth",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 124
+          lineNumber: 121
         },
         __self: this
       }, __jsx("div", {
         className: "card",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 125
+          lineNumber: 122
         },
         __self: this
       }, __jsx("div", {
         className: "card-content",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 126
+          lineNumber: 123
         },
         __self: this
       }, __jsx("p", {
         className: "title",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 127
+          lineNumber: 124
         },
         __self: this
       }, "Weather Forecast"), __jsx("h1", {
         className: "title is-1",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 127
         },
         __self: this
       }, this.state.location, ", ", this.state.country), __jsx("p", {
         className: "subtitle",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 130
         },
         __self: this
       }, "(", this.state.lat, ", ", this.state["long"], ")"), __jsx("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 136
+          lineNumber: 133
         },
         __self: this
       }), __jsx("p", {
         className: "title",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 137
+          lineNumber: 134
         },
         __self: this
       }, this.state.date), __jsx("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 140
+          lineNumber: 137
         },
         __self: this
       }), __jsx("p", {
         className: "subtitle",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 141
+          lineNumber: 138
         },
         __self: this
       }, this.state.temp, "\u2103", __jsx("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 143
+          lineNumber: 140
         },
         __self: this
       }), this.state.weather, __jsx("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 145
+          lineNumber: 142
         },
         __self: this
       }), __jsx("br", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 145
+          lineNumber: 142
         },
         __self: this
       }), __jsx("img", {
         src: this.state.image,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 146
+          lineNumber: 143
         },
         __self: this
       }))), __jsx("div", {
         className: "card-hour",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 149
+          lineNumber: 146
         },
         __self: this
       }, __jsx("p", {
         className: "subtitle",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 150
+          lineNumber: 147
         },
         __self: this
       }, "Hourly Weather Forecast"), __jsx("div", {
         className: "table-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 153
+          lineNumber: 150
         },
         __self: this
       }, __jsx("table", {
         className: "table",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 154
+          lineNumber: 151
         },
         __self: this
       }, __jsx("thead", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 155
+          lineNumber: 152
         },
         __self: this
       }, __jsx("tr", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 156
+          lineNumber: 153
         },
         __self: this
       }, hours.map(function (hour) {
         return __jsx("th", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 158
+            lineNumber: 155
           },
           __self: this
         }, hour);
       }))), __jsx("tbody", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 162
+          lineNumber: 159
         },
         __self: this
       }, __jsx("tr", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 163
+          lineNumber: 160
         },
         __self: this
       }, this.state.hourForecast.map(function (data) {
         return __jsx("td", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 165
+            lineNumber: 162
           },
           __self: this
         }, data.temp, "\u2103", __jsx("br", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 166
+            lineNumber: 163
           },
           __self: this
         }), __jsx("img", {
           src: data.image,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 167
+            lineNumber: 164
           },
           __self: this
         }), data.weather);
@@ -5663,86 +5661,86 @@ function (_React$Component) {
         className: "card-week",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 176
+          lineNumber: 173
         },
         __self: this
       }, __jsx("p", {
         className: "subtitle",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 177
+          lineNumber: 174
         },
         __self: this
       }, "Weekly Weather Forecast"), __jsx("div", {
         className: "table-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 180
+          lineNumber: 177
         },
         __self: this
       }, __jsx("table", {
         className: "table",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 181
+          lineNumber: 178
         },
         __self: this
       }, __jsx("thead", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 182
+          lineNumber: 179
         },
         __self: this
       }, __jsx("tr", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 183
+          lineNumber: 180
         },
         __self: this
       }, __jsx("th", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 184
+          lineNumber: 181
         },
         __self: this
       }), hours.map(function (hour) {
         return __jsx("th", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 186
+            lineNumber: 183
           },
           __self: this
         }, hour);
       }))), __jsx("tbody", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 190
+          lineNumber: 187
         },
         __self: this
       }, this.state.weekForecast.map(function (day) {
         return __jsx("tr", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 192
+            lineNumber: 189
           },
           __self: this
         }, __jsx("td", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 193
+            lineNumber: 190
           },
           __self: this
         }, __jsx("b", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 193
+            lineNumber: 190
           },
           __self: this
         }, day.day), "\xA0\xA0", day.date), day.hour.time.map(function (data) {
           return __jsx("td", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 195
+              lineNumber: 192
             },
             __self: this
           }, data.tempC, "\u2103", __jsx("img", {
@@ -5750,7 +5748,7 @@ function (_React$Component) {
             alt: "weather icon",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 197
+              lineNumber: 194
             },
             __self: this
           }));
@@ -5759,59 +5757,59 @@ function (_React$Component) {
         className: "card-month",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 208
+          lineNumber: 205
         },
         __self: this
       }, __jsx("p", {
         className: "subtitle",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 209
+          lineNumber: 206
         },
         __self: this
       }, "Average Monthly Weather Forecast"), __jsx("div", {
         className: "table-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 212
+          lineNumber: 209
         },
         __self: this
       }, __jsx("table", {
         className: "table",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 213
+          lineNumber: 210
         },
         __self: this
       }, __jsx("tbody", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 221
+          lineNumber: 211
         },
         __self: this
       }, __jsx("tr", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 222
+          lineNumber: 212
         },
         __self: this
       }, this.state.monthAvg.map(function (data) {
         return __jsx("td", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 224
+            lineNumber: 214
           },
           __self: this
         }, __jsx("b", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 225
+            lineNumber: 215
           },
           __self: this
         }, data.name), __jsx("br", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 225
+            lineNumber: 215
           },
           __self: this
         }), data.avgMinTemp, "\u2103");
