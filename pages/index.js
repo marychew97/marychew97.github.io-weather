@@ -17,16 +17,8 @@ class Index extends React.Component{
             temp: 0,
             weather: '',
             image: null,
-            hourForecast: [{
-                time: 0,
-                temp: 0,
-                weather: '',
-                image: null,
-            }],
-            weekForecast: [{
-                date: '',
-                avgTemp: 0
-            }]
+            hourForecast: [],
+            weekForecast: []
         }
 
         this.getLocationWeather = this.getLocationWeather.bind(this)
@@ -49,13 +41,14 @@ class Index extends React.Component{
                     .then(res => {
                         const result = res.data;
                         console.log(result)
-
+                        
                         //in kelvin
                         // this.getTemp(result.main.temp)
                         this.setState({
                             location: result.name,
                             country: result.sys.country,
-                            weather: result.weather[0].main
+                            weather: result.weather[0].main,
+                            date: this.getDate(result.dt)
                         })
                     })
 
@@ -67,7 +60,7 @@ class Index extends React.Component{
     }
 
     getWeekForecast(lat, long){
-        axios.get(`http://api.worldweatheronline.com/premium/v1/weather.ashx?key=453ff5c4911348cd95e91044201102&q=${lat},${long}&format=json&num_of_days=7`)
+        axios.get(`http://api.worldweatheronline.com/premium/v1/weather.ashx?key=453ff5c4911348cd95e91044201102&q=${lat},${long}&format=json&num_of_days=8`)
             .then(res => {
                 const result = res.data.data
                 console.log(result)
@@ -76,10 +69,17 @@ class Index extends React.Component{
                     image: result.current_condition[0].weatherIconUrl[0].value
                 })
                 result.weather.map(data => {
+                    var day = new Date(data.date);
+                    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    day = days[day.getDay()];
                     this.setState({
                     weekForecast: [...this.state.weekForecast, {
+                        day: day,
                         date: data.date,
-                        avgTemp:data.avgtempC
+                        maxTemp:data.maxtempC,
+                        hour: {
+                            time: data.hourly
+                        }
                     }]
                 })})
             })
@@ -90,7 +90,6 @@ class Index extends React.Component{
         .then(res => {
             const result = res.data.data
             result.weather[0].hourly.map(data => {
-                console.log(data.weatherDesc[0].value)
                 this.setState({
                 hourForecast: [...this.state.hourForecast, {
                     time: data.time,
@@ -99,16 +98,22 @@ class Index extends React.Component{
                     image: data.weatherIconUrl[0].value
                 }]
             })})
-            console.log(this.state)
         })
     }
 
-    // getDate(){
-    //     let date = new Date();
-    //     console.log(date.getDate() + "/"+ parseInt(date.getMonth()+1) +"/"+ date.getFullYear());
-    // }
+    getDate(dt){
+        var tf = new Date(dt*1000);
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var day = days[tf.getDay()];
+        var date = tf.getDate();
+        var month = months[tf.getMonth()];
+        var year = tf.getFullYear();
+        return `${day}, ${date} ${month} ${year}`;
+    }
 
     render(){
+        var hours = ['0000', '0300', '0600', '0900', '1200', '1500', '1800', '2100'];
         return(
             <div>
                 <div className="columns is-mobile">
@@ -123,6 +128,10 @@ class Index extends React.Component{
                             </h1>
                             <p className="subtitle">
                             ({this.state.lat}, {this.state.long})
+                            </p>
+                            <br/>
+                            <p className="title">
+                            {this.state.date}
                             </p>
                             <br/>
                             <p className="subtitle">
@@ -141,25 +150,19 @@ class Index extends React.Component{
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            {this.state.hourForecast.map(data => 
-                                                <th>{data.time}</th>
+                                            {hours.map(hour => 
+                                                <th>{hour}</th>
                                             )}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             {this.state.hourForecast.map(data => 
-                                                <td>{data.weather}</td>
-                                            )}
-                                        </tr>
-                                        <tr>
-                                            {this.state.hourForecast.map(data => 
-                                                <td><img src={data.image}/></td>
-                                            )}
-                                        </tr>
-                                        <tr>
-                                            {this.state.hourForecast.map(data => 
-                                                <td>{data.temp}&#8451;</td>
+                                                <td>
+                                                    {data.temp}&#8451;<br/>
+                                                    <img src={data.image}/>
+                                                    {data.weather}
+                                                </td>
                                             )}
                                         </tr>
                                     </tbody>
@@ -174,17 +177,26 @@ class Index extends React.Component{
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            {this.state.weekForecast.map(day => 
-                                                <th>{day.date}</th>
+                                            <th></th>
+                                            {hours.map(hour => 
+                                                <th>{hour}</th>
                                             )}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
                                             {this.state.weekForecast.map(day => 
-                                                <td>{day.avgTemp}&#8451;</td>
+                                            <tr>
+                                                <td><b>{day.day}</b>&nbsp;&nbsp;{day.date}</td>
+                                                {day.hour.time.map(data => 
+                                                    <td>
+                                                        {data.tempC}&#8451;
+                                                        <img src={data.weatherIconUrl[0].value} alt="weather icon"/>
+                                                        {/* {data.weatherDesc[0].value} */}
+                                                    </td>
+                                                )}
+                                            </tr>
                                             )}
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
