@@ -18,7 +18,8 @@ class Index extends React.Component{
             weather: '',
             image: null,
             hourForecast: [],
-            weekForecast: []
+            weekForecast: [],
+            monthAvg: []
         }
 
         this.getLocationWeather = this.getLocationWeather.bind(this)
@@ -53,7 +54,8 @@ class Index extends React.Component{
                     })
 
                 this.getWeekForecast(lat,long);
-                this.getHourForecast(lat,long)
+                this.getHourForecast(lat,long);
+                
             }
         )
         console.log(this.state)
@@ -66,7 +68,8 @@ class Index extends React.Component{
                 console.log(result)
                 this.setState({
                     temp: result.current_condition[0].temp_C,
-                    image: result.current_condition[0].weatherIconUrl[0].value
+                    image: result.current_condition[0].weatherIconUrl[0].value,
+                    monthAvg: result.ClimateAverages[0].month
                 })
                 result.weather.map(data => {
                     var day = new Date(data.date);
@@ -114,9 +117,10 @@ class Index extends React.Component{
 
     render(){
         var hours = ['0000', '0300', '0600', '0900', '1200', '1500', '1800', '2100'];
+        console.log(this.state)
         return(
             <div>
-                <div className="columns is-mobile">
+                <div className="columns is-desktop">
                     <div className="column is-three-fifths is-offset-one-fifth">
                     <div className="card">
                         <div className="card-content">
@@ -197,6 +201,32 @@ class Index extends React.Component{
                                             </tr>
                                             )}
                                         
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div className="card-month">
+                            <p className="subtitle">
+                            Average Monthly Weather Forecast
+                            </p>
+                            <div className="table-container">
+                                <table className="table">
+                                    {/* <thead>
+                                        <tr>
+                                            {hours.map(hour => 
+                                                <th>{hour}</th>
+                                            )}
+                                        </tr>
+                                    </thead> */}
+                                    <tbody>
+                                        <tr>
+                                         {this.state.monthAvg.map(data => 
+                                            <td>
+                                                <b>{data.name}</b><br/>
+                                                {data.avgMinTemp}&#8451;
+                                            </td>
+                                            )}
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
